@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name:       PRTE Course Certificate
  * Plugin URI:        https://www.prte.com.br
@@ -45,7 +46,17 @@ register_deactivation_hook( __FILE__, 'wp_prte_course_certificate_deactivate' );
 
 register_uninstall_hook(__FILE__, 'wp_prte_course_certificate_function_to_run');
 
+function wp_prte_course_certificate_options_page_html() {
+  require_once(WP_PLUGIN_DIR.'/wp-prte-course-certificate/includes/fpdf/fpdf.php');
 
+
+    $pdf = new FPDF();
+    $pdf->AddPage();
+    $pdf->SetFont('Arial','B',16);
+    $pdf->Cell(40,10,'Hello World!');
+    $pdf->Output('doc.pdf', 'D');
+    
+}
 
 add_action( 'admin_menu', 'wp_prte_course_certificate_options_page' );
 function wp_prte_course_certificate_options_page() {
@@ -53,9 +64,17 @@ function wp_prte_course_certificate_options_page() {
         'PRTE',
         'PRTE Options',
         'manage_options',
-        plugin_dir_path(__FILE__) . 'admin/view.php',
-        null,
+        'prte_course_certificate',
+        'wp_prte_course_certificate_options_page_html',
         '',
         20
     );
 }
+require_once(WP_PLUGIN_DIR.'/wp-prte-course-certificate/includes/fpdf/fpdf.php');
+
+
+    $pdf = new FPDF();
+    $pdf->AddPage();
+    $pdf->SetFont('Arial','B',16);
+    $pdf->Cell(40,10,'Hello World!');
+    $pdf->Output('doc.pdf', 'D');
