@@ -70,11 +70,3 @@ function wp_prte_course_certificate_options_page() {
         20
     );
 }
-require_once(WP_PLUGIN_DIR.'/wp-prte-course-certificate/includes/fpdf/fpdf.php');
-
-
-    $pdf = new FPDF();
-    $pdf->AddPage();
-    $pdf->SetFont('Arial','B',16);
-    $pdf->Cell(40,10,'Hello World!');
-    $pdf->Output('doc.pdf', 'D');
